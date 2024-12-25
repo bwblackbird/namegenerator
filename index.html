@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Customized Name Generator</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1 class="glow-text">Customized Name Generator</h1>
+        <p>Upload a CSV file with columns: <strong>Word, Meaning, Order (front/middle/end/all)</strong></p>
+        <input type="file" id="fileInput" accept=".csv">
+        <br>
+        <br>
+        <label for="numWords">Number of words per name (2-8):</label>
+        <input type="number" id="numWords" min="2" max="8" value="2">
+        <button id="generateButton">Generate Names</button>
+
+        <div id="output">
+            <h2>Generated Names:</h2>
+            <div id="names"></div>
+        </div>
+    </div>
+
+    <script src="main.js"></script>
+</body>
+</html>
