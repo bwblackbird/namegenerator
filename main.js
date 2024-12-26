@@ -1,23 +1,37 @@
+// Global Variables
+let wordsDict = {};
+
 // Event Listeners
-document.getElementById('fileInput').addEventListener('change', readFile);
+document.getElementById('fileInput').addEventListener('change', (event) => {
+    readFile(event)
+        .then(() => {
+            console.log('File successfully read and parsed.');
+            generateNames();
+        })
+        .catch((error) => console.error('Error:', error));
+});
 document.getElementById("generateButton").addEventListener("click", generateNames); 
 
 // File Handling
 function readFile(event) {
-    const input = event.target;
-    const reader = new FileReader();
-    reader.onload = function(){
-        const text = reader.result;
-        const parsedData = parseCSV(text);
-        console.log(parsedData);
-    };
-    reader.onerror = (error) => {
-        console.error('Error reading file:', error.message || error);
-    };
-    reader.readAsText(input.files[0]);
+    // read the uploaded CSV file
+    return new Promise((resolve, reject) => {
+        const input = event.target;
+        const reader = new FileReader();
+        reader.onload = function(){
+            const text = reader.result;
+            wordsDict = parseCSV(text);
+            resolve(wordsDict);
+        };
+        reader.onerror = (error) => {
+            reject(console.error('Error reading file:', error.message || error));
+        };
+        reader.readAsText(input.files[0]);
+    });
 };
 
 function parseCSV(text) {
+    // parse the CSV file and store data in a dictionary
     const rows = text.split('\n').map(row => row.trim()); 
     const wordsDictionary = {};
     for (let i = 1; i < rows.length; i++) { // skip the header row
@@ -31,13 +45,14 @@ function parseCSV(text) {
     return wordsDictionary;
 };
 
-// Name Generation 
+// Name Generation
 function filterWords() {
-    // filter words into arrays based on order (frontOnly, endOnly, anyOrder)
-}
+    // filter words based on their order in the name
+};
+
 function generateNames() {
     // randomly generate names based on user input for the number of words per name
-}
+};
 
 // Display Results
 function displaynames() {
