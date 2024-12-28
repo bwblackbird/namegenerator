@@ -13,12 +13,24 @@ body {
 }
 
 .container {
-    max-width: 600px;
     margin: auto;
+    height: 500px;
     background: #310000;
-    padding: 20px;
+    padding: 10px;
     border-radius: 1px;
     box-shadow: 10px 10px 10px rgb(36, 0, 0);
+}
+
+.input {
+    float: left;
+    width: 47%;
+    padding: 10px;
+}
+
+.output {
+    float: left;
+    width: 47%;
+    padding: 10px;   
 }
 
 h1 {
@@ -30,8 +42,17 @@ h1 {
 .glow-text {
     color: rgb(234, 193, 11);
     text-shadow: 0 0 5px black, 0 0 10px black;
+    text-align: center;
     font-size: 2em;
     font-weight: bold;
+}
+
+#names {
+    width: 80%;
+    padding-left: 40px;
+    font-size: 1.2em;
+    text-align: left;
+    border-radius: 5px;
 }
 
 input[type="file"],
@@ -65,36 +86,8 @@ button:hover {
     background: #f5bd14;
 }
 
-#output {
-    margin-top: 20px;
-    border-top: 1px solid #ddd;
-    padding-top: 15px;
-}
-
 h2 {
     font-size: 1.5em;
     margin-bottom: 10px;
 }
 
-.name {
-    font-size: 1.2em;
-    padding: 8px;
-    background: #f0f0f0;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    margin-bottom: 5px;
-}
-
-@media (max-width: 600px) {
-    body {
-        margin: 10px;
-    }
-
-    .container {
-        padding: 15px;
-    }
-
-    h1 {
-        font-size: 1.5em;
-    }
-}
