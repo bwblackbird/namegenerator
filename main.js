@@ -10,7 +10,7 @@ document.getElementById('fileInput').addEventListener('change', (event) => {
         })
         .catch((error) => console.error('Error:', error));
 });
-document.getElementById("generateButton").addEventListener("click", generateNames); 
+document.getElementById("generateButton").addEventListener("click", displayNames); 
 
 // File Handling
 function readFile(event) {
@@ -87,7 +87,6 @@ function filterWords() {
 function generateNames() {
     // randomly generate names based on user input for the number of words per name
         // TODO: prohibit the same word from being used multiple times in one name
-        // TODO: display the generated names in the output container
     const nameLength = findLength();
     const [allFront, allEnd, anyOrder] = filterWords();
     const generatedNames = {};
@@ -115,14 +114,17 @@ function generateNames() {
             generatedNames[name] = nameMeaning;
         }
     }
-    console.log(generatedNames);
+    return generatedNames;
 };
 
 // Display Results
-function displaynames() {
+function displayNames() {
     // display the generated names in the output container
-}
-
-function clearnames() {
-    // clear the output container
+    let data = generateNames();
+    let list = document.getElementById('nameList')
+    let ul = `<ul>${Object.entries(data).map(([name, meaning]) => {
+            let capitalized = name.charAt(0).toUpperCase() + name.slice(1).toLowerCase(); // capitalize first letter of the name
+            return `<li>${capitalized}: ${meaning}</li>`;
+        }).join('')}</ul>`;
+    list.innerHTML = ul;
 }
